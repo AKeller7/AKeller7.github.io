@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ashley Keller - Salesforce Platform Architect</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #00a1e0; /* Salesforce blue */
+            --secondary-color: #032d60; /* Salesforce dark blue */
+            --accent-color: #1589ee;
+            --light-color: #f3f6f9;
+            --dark-color: #181818;
+            --gray-color: #706e6b;
+            --success-color: #4bca81;
+            --warning-color: #ffb75d;
+            --danger-color: #ea001e;
+            --border-radius: 8px;
+            --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-color);
+            background-color: #f8fafc;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            line-height: 1.3;
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 60px;
+            height: 4px;
+            background-color: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        p {
+            margin-bottom: 1.2rem;
+            color: var(--gray-color);
+        }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        a:hover {
+            color: var(--secondary-color);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            padding: 5rem 0;
+        }
+
+        section:nth-child(even) {
+            background-color: white;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border-radius: var(--border-radius);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.9rem;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary-color);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: var(--box-shadow);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+        }
+
+        .logo span {
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--secondary-color);
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #032d60 0%, #00a1e0 100%);
+            color: white;
+            padding: 8rem 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            color: white;
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+
+        .hero .subtitle {
+            font-size: 1.1rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .hero-btns {
+            margin-top: 2rem;
+        }
+
+        .hero-btns .btn {
+            margin: 0 0.5rem;
+        }
+
+        .btn-light {
+            background-color: white;
+            color: var(--primary-color);
+        }
+
+        .btn-light:hover {
+            background-color: rgba(255, 255, 255, 0.9);
+            color: var(--secondary-color);
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text {
+            order: 1;
+        }
+
+        .about-image {
+            order: 2;
+            text-align: center;
+        }
+
+        .profile-img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 1.5rem;
+        }
+
+        .skill-tag {
+            background-color: var(--light-color);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--secondary-color);
+        }
+
+        .skill-tag.salesforce {
+            background-color: rgba(0, 161, 224, 0.1);
+            color: var(--primary-color);
+        }
+
+        /* Case Study Section */
+        .case-study-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .case-study-header h2 {
+            margin-bottom: 1rem;
+        }
+
+        .case-study-header h2::after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .challenge-box {
+            background-color: rgba(234, 0, 30, 0.05);
+            border-left: 4px solid var(--danger-color);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 3rem;
+        }
+
+        .challenge-box h3 {
+            color: var(--danger-color);
+        }
+
+        .phases {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .phase-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            border-top: 4px solid var(--primary-color);
+        }
+
+        .phase-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .phase-card h3 {
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .phase-card ul {
+            list-style-position: inside;
+            color: var(--gray-color);
+        }
+
+        .phase-card li {
+            margin-bottom: 0.5rem;
+        }
+
+        .phase-card strong {
+            color: var(--secondary-color);
+        }
+
+        .outcome-box {
+            background-color: rgba(75, 202, 129, 0.05);
+            border-left: 4px solid var(--success-color);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            margin-top: 2rem;
+        }
+
+        .outcome-box h3 {
+            color: var(--success-color);
+        }
+
+        .outcome-box ul {
+            list-style-position: inside;
+            margin-top: 1rem;
+        }
+
+        .outcome-box li {
+            margin-bottom: 0.8rem;
+        }
+
+        .closing-statement {
+            font-style: italic;
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem;
+            background-color: var(--light-color);
+            border-radius: var(--border-radius);
+        }
+
+        .closing-statement strong {
+            color: var(--primary-color);
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .project-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-img {
+            height: 200px;
+            background-color: var(--light-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            font-size: 3rem;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-content h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tech-tag {
+            background-color: var(--light-color);
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            color: var(--gray-color);
+        }
+
+        /* Contact Section */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .contact-icon {
+            background-color: var(--primary-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .contact-form textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .copyright {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            width: 100%;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .about-content,
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .phases {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 1rem 0;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                flex-direction: column;
+                padding: 1rem 0;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                margin: 0;
+                text-align: center;
+                padding: 0.8rem 0;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.7rem;
+            }
+
+            section {
+                padding: 3rem 0;
+            }
+
+            .phases {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">Ashley<span>Keller</span></div>
+            <button class="mobile-menu-btn" id="mobile-menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#case-study">Case Study</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <p class="subtitle">Salesforce Platform Architect</p>
+            <h1>Building Scalable Foundations for Business Growth</h1>
+            <p>I design and implement robust Salesforce architectures that transform complex business challenges into streamlined, scalable solutions. With expertise in data modeling, security frameworks, and process automation, I help organizations leverage the full potential of their CRM investment.</p>
+            <div class="hero-btns">
+                <a href="#case-study" class="btn">View Case Study</a>
+                <a href="#contact" class="btn btn-outline btn-light">Contact Me</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>About Me</h2>
+                    <p>I'm a certified Salesforce Platform Architect with over 8 years of experience designing and implementing scalable CRM solutions for organizations of all sizes. My approach combines technical expertise with strategic business thinking to deliver sustainable outcomes.</p>
+                    <p>I specialize in greenfield implementations, complex migrations, and building governance frameworks that enable growth while maintaining system integrity.</p>
+                    
+                    <h3>Core Competencies</h3>
+                    <div class="skills-list">
+                        <span class="skill-tag salesforce">Salesforce Architecture</span>
+                        <span class="skill-tag">Data Modeling</span>
+                        <span class="skill-tag">Security Design</span>
+                        <span class="skill-tag salesforce">Apex & Lightning Web Components</span>
+                        <span class="skill-tag">Process Automation</span>
+                        <span class="skill-tag">Integration Design</span>
+                        <span class="skill-tag">Governance Frameworks</span>
+                        <span class="skill-tag">Requirements Gathering</span>
+                        <span class="skill-tag">Team Leadership</span>
+                        <span class="skill-tag salesforce">Salesforce CPQ</span>
+                        <span class="skill-tag">Release Management</span>
+                        <span class="skill-tag">User Training</span>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <div class="profile-img">
+                        <svg width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="400" height="400" fill="#F3F6F9"/>
+                            <circle cx="200" cy="150" r="80" fill="#00A1E0" fill-opacity="0.1"/>
+                            <circle cx="200" cy="150" r="60" fill="#00A1E0" fill-opacity="0.2"/>
+                            <circle cx="200" cy="150" r="40" fill="#00A1E0"/>
+                            <path d="M120 280C120 240 160 220 200 220C240 220 280 240 280 280" stroke="#032D60" stroke-width="8"/>
+                            <circle cx="170" cy="130" r="10" fill="white"/>
+                            <circle cx="230" cy="130" r="10" fill="white"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Study Section -->
+    <section id="case-study">
+        <div class="container">
+            <div class="case-study-header">
+                <h2>Greenfield Salesforce Implementation</h2>
+                <p>A documented approach by Ashley Keller, Salesforce Platform Architect</p>
+            </div>
+
+            <div class="challenge-box">
+                <h3>The Challenge</h3>
+                <p>To replace a rigid, industry-specific legacy CRM that could not scale, was creating data silos, and relied on manual workarounds. The business needed a secure, reliable, and scalable platform to support its core operations and growth.</p>
+            </div>
+
+            <h2>My Strategic Approach</h2>
+            
+            <div class="phases">
+                <div class="phase-card">
+                    <h3>Phase 1: Discovery & Strategy</h3>
+                    <ul>
+                        <li>Mapped all legacy objects, fields, and processes.</li>
+                        <li>Partnered with department leaders to define "scalable" for their needs.</li>
+                        <li>Planned migration to avoid replicating technical debt.</li>
+                    </ul>
+                </div>
+                <div class="phase-card">
+                    <h3>Phase 2: Core Architecture</h3>
+                    <ul>
+                        <li>Designed a scalable data model using <strong>Account Hierarchies</strong> for partners.</li>
+                        <li>Implemented a modern, audit-ready <strong>Permission Set-Led Security Model</strong> following Principle of Least Privilege (PoLP).</li>
+                        <li>Integrated Salesforce as the <strong>System of Record</strong> with Azure Data Lake.</li>
+                    </ul>
+                </div>
+                <div class="phase-card">
+                    <h3>Phase 3: Build & Automate</h3>
+                    <ul>
+                        <li>Built the core <strong>Lead-to-Cash</strong> process.</li>
+                        <li>Automated the complex <strong>Client Account Closure</strong> workflow using Record-Triggered Flows with scheduled paths and external API integration.</li>
+                        <li>Mentored a junior admin through an automation build.</li>
+                    </ul>
+                </div>
+                <div class="phase-card">
+                    <h3>Phase 4: Govern & Scale</h3>
+                    <ul>
+                        <li>Created comprehensive user training and documentation in <strong>Confluence</strong>.</li>
+                        <li>Established a formal <strong>bi-weekly release process</strong> with sandbox promotion.</li>
+                        <li>Defined ongoing governance standards for security and changes.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="outcome-box">
+                <h3>The Outcome</h3>
+                <ul>
+                    <li><strong>Successful Launch:</strong> Migrated all historical data (including critical partner payout data) without business disruption.</li>
+                    <li><strong>Eliminated Technical Debt:</strong> Replaced a failing system with a governed, scalable foundation.</li>
+                    <li><strong>Operational Efficiency:</strong> Automated key processes, saving one team ~75% manual effort.</li>
+                    <li><strong>Future-Proofed Growth:</strong> Established the architectural and governance standards necessary for scale.</li>
+                </ul>
+            </div>
+
+            <div class="closing-statement">
+                <p>This project embodies my approach: <strong>systems thinking, process orientation, and a focus on sustainable business outcomes.</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <h2>Other Projects</h2>
+            <p>Explore additional Salesforce implementations and architectural solutions.</p>
+            
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-img">
+                        <i class="fas fa-chart-network"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>Multi-Org Integration Strategy</h3>
+                        <p>Designed and implemented an integration framework connecting three Salesforce orgs (sales, service, and partner) with a centralized data warehouse.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">MuleSoft</span>
+                            <span class="tech-tag">API Integration</span>
+                            <span class="tech-tag">Data Architecture</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-img">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>Security & Compliance Framework</h3>
+                        <p>Developed a comprehensive security model for a financial services client, achieving SOC2 compliance and implementing field-level security across 200+ profiles.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Security</span>
+                            <span class="tech-tag">Compliance</span>
+                            <span class="tech-tag">Governance</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-img">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>Process Automation Suite</h3>
+                        <p>Built a library of 50+ reusable Flow components and automation patterns that reduced development time by 40% and improved process consistency.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Flow</span>
+                            <span class="tech-tag">Process Builder</span>
+                            <span class="tech-tag">Apex</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2>Get In Touch</h2>
+            <p>Interested in discussing Salesforce architecture, governance, or implementation strategies? Let's connect.</p>
+            
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h3>Email</h3>
+                            <p>ashley.keller@example.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h3>Location</h3>
+                            <p>San Francisco, CA</p>
+                            <p>Open to remote opportunities</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-file-certificate"></i>
+                        </div>
+                        <div>
+                            <h3>Certifications</h3>
+                            <p>Salesforce Certified Technical Architect</p>
+                            <p>Salesforce Certified Application Architect</p>
+                            <p>Salesforce Certified System Architect</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <input type="text" placeholder="Your Name" required>
+                        <input type="email" placeholder="Your Email" required>
+                        <input type="text" placeholder="Subject" required>
+                        <textarea placeholder="Your Message" required></textarea>
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-container">
+            <div class="logo" style="color: white;">Ashley<span style="color: #00a1e0;">Keller</span></div>
+            <p style="color: rgba(255, 255, 255, 0.8); margin-top: 1rem; text-align: center;">Salesforce Platform Architect specializing in scalable implementations and governance frameworks.</p>
+            
+            <div class="footer-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#case-study">Case Study</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+            </div>
+            
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/ashley-keller-09b459133" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://trailblazer.me/id" target="_blank"><i class="fab fa-salesforce"></i></a>
+                <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+            </div>
+            
+            <div class="copyright">
+                <p>© 2025 Ashley Keller. This portfolio showcases professional Salesforce architecture work.</p>
+                <p style="margin-top: 0.5rem;">Connect with me on <a href="https://www.linkedin.com/in/ashley-keller-09b459133" target="_blank" style="color: rgba(255, 255, 255, 0.8);">LinkedIn</a>.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const navLinks = document.getElementById('nav-links');
+        
+        mobileMenuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            
+            // Change icon
+            const icon = mobileMenuToggle.querySelector('i');
+            if (icon.classList.contains('fa-bars')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                const icon = mobileMenuToggle.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            });
+        });
+        
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = this.querySelector('input[type="text"]').value;
+            const email = this.querySelector('input[type="email"]').value;
+            
+            // Show success message (in a real implementation, this would be an API call)
+            alert(`Thank you ${name}! Your message has been sent. I'll get back to you at ${email} soon.`);
+            this.reset();
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
