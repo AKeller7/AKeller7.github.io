@@ -1,0 +1,14 @@
+/* ===== Profile Image Styling ===== */
+.profile-img img {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    border: 5px solid white;
+}
+
+.profile-img img:hover {
+    transform: scale(1.02);
+    transition: var(--transition);
+}
