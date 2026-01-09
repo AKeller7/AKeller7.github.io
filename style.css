@@ -1,3 +1,38 @@
+/* ===== SAFARI-SPECIFIC FIXES ===== */
+
+/* Reset Safari's default styles */
+html, body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+/* Fix for CSS variables in older Safari */
+@supports not (--css: variables) {
+    :root {
+        --primary-color: #00a1e0;
+        --secondary-color: #032d60;
+        --accent-color: #1589ee;
+        --light-color: #f3f6f9;
+        --dark-color: #181818;
+        --gray-color: #706e6b;
+        --border-radius: 8px;
+        --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    }
+}
+
+/* Fix for flexbox in Safari */
+.flex-fix {
+    display: -webkit-flex;
+    display: flex;
+}
+
+/* Fix for CSS Grid in Safari */
+.grid-fix {
+    display: -webkit-grid;
+    display: grid;
+}
+
 :root {
     --primary-color: #00a1e0; /* Salesforce blue */
     --secondary-color: #032d60; /* Salesforce dark blue */
