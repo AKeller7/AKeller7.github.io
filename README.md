@@ -16,7 +16,6 @@ Professional portfolio showcasing Salesforce architecture expertise and implemen
 - Apex & Lightning Web Components
 - Flow & Process Automation
 - Data Modeling & Integration
-- CPQ & Billing
 
 ## Contact
 - LinkedIn: [Ashley Keller](https://www.linkedin.com/in/ashley-keller-09b459133)
