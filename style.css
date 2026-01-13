@@ -815,7 +815,7 @@ style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)
     
     /* Fix for Architectural Framework heading alignment */
 #approach h2 {
-    text-align: left;
+    text-align: left !important;
     }
 }
 }
